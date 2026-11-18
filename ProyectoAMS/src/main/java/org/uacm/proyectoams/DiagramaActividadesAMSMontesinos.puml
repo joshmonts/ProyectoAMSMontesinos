@@ -1,0 +1,26 @@
+@startuml
+title Diagrama de Actividades - Flujo de Aprendizaje y Evaluación
+skinparam shadowing false
+
+start
+:Ingresar a la plataforma web;
+
+if (¿Usuario autenticado?) then (No)
+  :Iniciar sesión o registrarse;
+else (Sí)
+endif
+
+repeat
+  :Seleccionar Módulo Educativo;
+  :Leer lecciones, tips de prompts y normatividad;
+  :Realizar actividades de refuerzo;
+repeat while (¿Realizar evaluación?) is (No)
+-> Sí;
+
+:Responder cuestionario de autoaprendizaje;
+:Sistema calcula calificación automáticamente;
+:Guardar calificación y actualizar progreso en BD;
+:Mostrar retroalimentación y porcentaje de avance;
+
+stop
+@enduml

@@ -1,0 +1,27 @@
+
+@startuml
+title Diagrama de Casos de Uso - Plataforma "Aprendiendo con IA"
+left to right direction
+skinparam shadowing false
+
+actor "Usuario / Estudiante" as Usuario
+
+rectangle "Plataforma Web: Aprendiendo con IA" {
+  usecase "Registrarse / Iniciar sesión" as UC1
+  usecase "Consultar Módulo 1:\nIntroducción a la IA" as UC2
+  usecase "Consultar Módulo 2:\nTips, Prompts y Ética" as UC3
+  usecase "Realizar Evaluación\nde Autoaprendizaje" as UC4
+  usecase "Visualizar Calificación" as UC5
+  usecase "Consultar Seguimiento\nde Progreso" as UC6
+}
+
+Usuario --> UC1
+Usuario --> UC2
+Usuario --> UC3
+Usuario --> UC4
+Usuario --> UC6
+
+UC4 ..> UC5 : <<include>>
+UC6 ..> UC4 : <<extend>>
+
+@enduml

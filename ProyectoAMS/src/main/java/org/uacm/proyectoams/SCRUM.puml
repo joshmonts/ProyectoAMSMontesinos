@@ -1,0 +1,49 @@
+@startuml
+title Marco Ágil SCRUM - Plataforma "Aprendiendo con IA"
+
+skinparam backgroundColor #FFFFFF
+skinparam package {
+  BackgroundColor #F8FAFC
+  BorderColor #2563EB
+  FontName Arial
+}
+skinparam card {
+  BackgroundColor #FFFFFF
+  BorderColor #64748B
+  FontName Arial
+}
+
+package "Product Backlog (Priorizado)" {
+  card "**HU-01 (RF-06):** Registro e inicio de sesión de usuarios\nPuntos: 5 | Prioridad: Alta" as hu1
+  card "**HU-02 (RF-01):** Panel principal con 3 módulos educativos\nPuntos: 3 | Prioridad: Alta" as hu2
+  card "**HU-03 (RF-02):** Lectura de conceptos básicos de IA\nPuntos: 5 | Prioridad: Alta" as hu3
+  card "**HU-04 (RF-03):** Guías de prompts, ética y privacidad\nPuntos: 5 | Prioridad: Media" as hu4
+  card "**HU-05 (RF-04):** Cuestionario de autoaprendizaje (Módulo 3)\nPuntos: 8 | Prioridad: Alta" as hu5
+  card "**HU-06 (RF-05):** Calificación automática y barra de progreso\nPuntos: 8 | Prioridad: Alta" as hu6
+}
+
+package "Sprint 1: Base, Autenticación y Contenidos (16 pts)" {
+  card "**TASK-01:** Crear BD física en MySQL (6 tablas)" as t1
+  card "**TASK-02:** Maquetar interfaz responsiva HTML5/CSS3" as t2
+  card "**TASK-03:** Programar login/registro con cifrado de clave" as t3
+  card "**BUG-01:** Corrección de desbordamiento de tarjetas en móvil" as b1
+}
+
+package "Sprint 2: Buenas Prácticas, Evaluaciones y Progreso (21 pts)" {
+  card "**TASK-04:** Implementar bloques comparativos de prompts" as t4
+  card "**TASK-05:** Desarrollar lógica JS de calificación de cuestionario" as t5
+  card "**TASK-06:** Conectar progreso de usuario con BD" as t6
+  card "**BUG-02:** Evitar envío de cuestionario con preguntas sin responder" as b2
+}
+
+hu1 --> t1
+hu1 --> t3
+hu2 --> t2
+hu3 --> t2
+t2 --> b1
+
+hu4 --> t4
+hu5 --> t5
+hu6 --> t6
+t5 --> b2
+@enduml

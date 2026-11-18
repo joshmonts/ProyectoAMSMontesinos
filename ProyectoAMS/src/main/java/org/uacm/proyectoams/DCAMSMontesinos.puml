@@ -1,0 +1,68 @@
+@startuml
+title Diagrama de Clases - Plataforma "Aprendiendo con IA"
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+class Usuario {
+  - idUsuario : int
+  - nombre : String
+  - correo : String
+  - contrasena : String
+  + registrar() : boolean
+  + iniciarSesion() : boolean
+  + consultarProgreso() : List<Progreso>
+}
+
+class Modulo {
+  - idModulo : int
+  - titulo : String
+  - descripcion : String
+  - orden : int
+  + obtenerModulos() : List<Modulo>
+  + obtenerLecciones() : List<Leccion>
+}
+
+class Leccion {
+  - idLeccion : int
+  - idModulo : int
+  - titulo : String
+  - contenido : String
+  - categoria : String
+  + mostrarContenido() : String
+}
+
+class Evaluacion {
+  - idEvaluacion : int
+  - idModulo : int
+  - titulo : String
+  - puntajeMinimo : double
+  + cargarPreguntas() : List<Pregunta>
+  + calificarIntento(respuestas : List<String>) : double
+}
+
+class Pregunta {
+  - idPregunta : int
+  - idEvaluacion : int
+  - enunciado : String
+  - opcionCorrecta : String
+  + validarRespuesta(respuesta : String) : boolean
+}
+
+class Progreso {
+  - idProgreso : int
+  - idUsuario : int
+  - idEvaluacion : int
+  - calificacion : double
+  - completado : boolean
+  - fechaRealizacion : Date
+  + guardarResultado() : void
+  + calcularPorcentajeGeneral() : double
+}
+
+Usuario "1" --> "0..*" Progreso : registra >
+Modulo "1" *-- "1..*" Leccion : contiene >
+Modulo "1" --> "1" Evaluacion : evalúa >
+Evaluacion "1" *-- "1..*" Pregunta : incluye >
+Evaluacion "1" --> "0..*" Progreso : genera >
+
+@enduml
