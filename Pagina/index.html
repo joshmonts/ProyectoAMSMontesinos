@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendiendo con IA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra de Navegación -->
+  <header class="navbar">
+    <img src="logo.png" width="100" height="100" alt="logo">
+    <div class="logo" >Aprendiendo con IA</div>
+    <nav id="nav-user" class="hidden">
+      <span id="user-greeting">Hola, Estudiante</span>
+      <button onclick="cerrarSesion()" class="btn-outline">Salir</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- SECCIÓN 1: AUTENTICACIÓN (RF-06) -->
+    <section id="auth-section" class="auth-grid">
+      <div class="card">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" placeholder="usuario@ejemplo.com" required>
+          
+          <label for="login-pass">Contraseña</label>
+          <input type="password" id="login-pass" placeholder="••••••••" required>
+          
+          <button type="submit" class="btn-primary">Ingresar</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Crear Cuenta Gratuita</h2>
+        <form id="register-form">
+          <label for="reg-name">Nombre completo</label>
+          <input type="text" id="reg-name" placeholder="Ej. Ana López" required>
+
+          <label for="reg-email">Correo electrónico</label>
+          <input type="email" id="reg-email" placeholder="ana@ejemplo.com" required>
+          
+          <label for="reg-pass">Contraseña</label>
+          <input type="password" id="reg-pass" minlength="6" placeholder="Mínimo 6 caracteres" required>
+          
+          <button type="submit" class="btn-primary">Registrarse</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: PANEL PRINCIPAL Y MÓDULOS (RF-01, RF-05) -->
+    <section id="dashboard-section" class="hidden">
+      
+      <!-- Barra de Progreso -->
+      <div class="progress-box">
+        <div class="progress-header">
+          <span><strong>Tu Progreso General</strong></span>
+          <span id="progress-text">0% Completado</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Tarjetas de los 3 Módulos -->
+      <div class="modules-grid">
+        <article class="card module-card">
+          <span class="badge">Módulo 1</span>
+          <h3>Introducción a la IA</h3>
+          <p>Conoce qué es la Inteligencia Artificial, sus conceptos básicos, beneficios y usos cotidianos.</p>
+          <button onclick="abrirVista('modulo1-view')" class="btn-primary">Ver Lecciones</button>
+        </article>
+
+        <article class="card module-card">
+          <span class="badge">Módulo 2</span>
+          <h3>Tips y Buenas Prácticas</h3>
+          <p>Aprende a redactar mejores prompts, verificar información y proteger tus datos personales.</p>
+          <button onclick="abrirVista('modulo2-view')" class="btn-primary">Ver Guía Práctica</button>
+        </article>
+
+        <article class="card module-card">
+          <span class="badge">Módulo 3</span>
+          <h3>Evaluación Final</h3>
+          <p>Pon a prueba lo aprendido con un cuestionario de opción múltiple y obtén tu calificación.</p>
+          <button onclick="abrirVista('modulo3-view')" class="btn-primary">Iniciar Evaluación</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- VISTA MÓDULO 1: INTRODUCCIÓN A LA IA (RF-02) -->
+    <section id="modulo1-view" class="lesson-view hidden">
+      <button onclick="volverDashboard()" class="btn-back">← Volver al Panel</button>
+      <div class="card">
+        <h2>Módulo 1: Introducción a la Inteligencia Artificial</h2>
+        <div class="lesson-block">
+          <h3>1.1 ¿Qué es la Inteligencia Artificial?</h3>
+          <p>Es la capacidad de los sistemas informáticos para realizar tareas que normalmente requieren inteligencia humana, como comprender lenguaje, reconocer patrones, analizar datos y generar contenido nuevo.</p>
+        </div>
+        <div class="lesson-block">
+          <h3>1.2 Beneficios y Usos Cotidianos</h3>
+          <ul>
+            <li><strong>Educación:</strong> Explicación de temas complejos, generación de resúmenes y tutoría personalizada.</li>
+            <li><strong>Productividad:</strong> Redacción de correos, organización de ideas y traducción instantánea.</li>
+            <li><strong>Vida diaria:</strong> Asistentes virtuales, recomendaciones de contenido y navegación GPS.</li>
+          </ul>
+        </div>
+        <button onclick="completarModulo(1)" class="btn-primary">Marcar Módulo 1 como leído</button>
+      </div>
+    </section>
+
+    <!-- VISTA MÓDULO 2: TIPS Y BUENAS PRÁCTICAS (RF-03) -->
+    <section id="modulo2-view" class="lesson-view hidden">
+      <button onclick="volverDashboard()" class="btn-back">← Volver al Panel</button>
+      <div class="card">
+        <h2>Módulo 2: Tips, Ética y Normatividad</h2>
+        
+        <div class="lesson-block">
+          <h3>2.1 Cómo escribir mejores Prompts</h3>
+          <p>Un <em>prompt</em> es la instrucción que le das a la IA. Mientras más claro y específico seas, mejor será el resultado.</p>
+          <div class="comparison-box">
+            <div class="bad-example">
+              <strong>Prompt débil:</strong><br>
+              "Explícame la fotosíntesis."
+            </div>
+            <div class="good-example">
+              <strong>Prompt efectivo:</strong><br>
+              "Explícame el proceso de la fotosíntesis en 4 pasos sencillos, usando un ejemplo cotidiano para estudiantes de secundaria."
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-block">
+          <h3>2.2 Privacidad, Seguridad y Ética</h3>
+          <ul>
+            <li><strong>Protege datos sensibles:</strong> Nunca ingreses contraseñas, números bancarios, CURP o datos médicos privados.</li>
+            <li><strong>Verifica siempre:</strong> La IA puede cometer errores ("alucinaciones"). Contrasta fechas y datos con fuentes oficiales.</li>
+            <li><strong>Uso honesto:</strong> Utiliza la IA como herramienta de apoyo y aprendizaje, evitando el plagio académico.</li>
+          </ul>
+        </div>
+        <button onclick="completarModulo(2)" class="btn-primary">Marcar Módulo 2 como leído</button>
+      </div>
+    </section>
+
+    <!-- VISTA MÓDULO 3: EVALUACIÓN DE AUTOAPRENDIZAJE (RF-04, RF-05) -->
+    <section id="modulo3-view" class="lesson-view hidden">
+      <button onclick="volverDashboard()" class="btn-back">← Volver al Panel</button>
+      <div class="card">
+        <h2>Módulo 3: Evaluación de Autoaprendizaje</h2>
+        <p class="subtitle">Responde todas las preguntas. Puntaje mínimo aprobatorio: <strong>80/100</strong>.</p>
+        
+        <form id="quiz-form">
+          <div class="question-item">
+            <p><strong>1. ¿Qué es un "prompt" en el contexto de la Inteligencia Artificial?</strong></p>
+            <label><input type="radio" name="q1" value="a"> Un virus informático</label>
+            <label><input type="radio" name="q1" value="b"> La instrucción o consulta que el usuario escribe a la IA</label>
+            <label><input type="radio" name="q1" value="c"> El componente físico del servidor</label>
+          </div>
+
+          <div class="question-item">
+            <p><strong>2. ¿Qué información debes evitar compartir en un chat de IA pública?</strong></p>
+            <label><input type="radio" name="q2" value="a"> Preguntas generales de historia o ciencia</label>
+            <label><input type="radio" name="q2" value="b"> Contraseñas, datos bancarios o información personal confidencial</label>
+            <label><input type="radio" name="q2" value="c"> Solicitudes para resumir un texto público</label>
+          </div>
+
+          <div class="question-item">
+            <p><strong>3. ¿Cuál es la mejor práctica después de recibir un dato importante de una IA?</strong></p>
+            <label><input type="radio" name="q3" value="a"> Verificar la información en fuentes confiables</label>
+            <label><input type="radio" name="q3" value="b"> Asumir que nunca se equivoca</label>
+            <label><input type="radio" name="q3" value="c"> Copiar y entregar sin leer el contenido</label>
+          </div>
+
+          <div class="question-item">
+            <p><strong>4. ¿Qué elemento mejora la calidad de respuesta de una IA?</strong></p>
+            <label><input type="radio" name="q4" value="a"> Escribir palabras sueltas sin contexto</label>
+            <label><input type="radio" name="q4" value="b"> Dar contexto claro, rol y formato deseado</label>
+            <label><input type="radio" name="q4" value="c"> Usar únicamente mayúsculas</label>
+          </div>
+
+          <button type="submit" class="btn-primary">Enviar y Calificar Respuestas</button>
+        </form>
+
+        <div id="quiz-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Aprendiendo con IA | @Derechos reservados José Ignacio Montesinos Osorio</p>
+  </footer>
+
+  <script src="quiz.js"></script>
+</body>
+</html>
